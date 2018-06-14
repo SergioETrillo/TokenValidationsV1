@@ -23,6 +23,17 @@ namespace AuthTokensv1
                 return req.CreateResponse(HttpStatusCode.Unauthorized);
             }
 
+            var claims = claimsPrincipal.Claims;
+
+            foreach (var claim in claims)
+            {
+                var subject = claim.Subject;
+                var subName = subject.Name;
+                bool authenticated = subject.IsAuthenticated;
+                var label = subject.Label;
+                var claimsSub = subject.Claims;
+                var actor = subject.Actor;
+            }
 
             // parse query parameter
             string name = req.GetQueryNameValuePairs()
